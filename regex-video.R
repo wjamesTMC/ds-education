@@ -4,6 +4,8 @@ library(dslabs)
 library(tidyverse)
 library(stringr)
 
+install.packages("htmlwidgets")
+
 data("reported_heights")
 
 # We have seen three patterns that define many problematic entries.
@@ -49,7 +51,28 @@ str_detect(s, pattern)
 str_view(s, pattern)
 str_view_all(s, pattern)
 
-library(stringr)
 s <- c("70", "5 ft", "4'11", "", ".", "Six feet")
 pattern <- "\\d|ft"
 str_view_all(s, pattern)
+
+animals <- c("cat", "puppy", "Moose", "MONKEY")
+pattern <- "[a-z]"
+str_detect(animals, pattern)
+
+animals <- c("cat", "puppy", "Moose", "MONKEY")
+pattern <- "[A-Z]$"
+str_detect(animals, pattern)
+
+animals <- c("cat", "puppy", "Moose", "MONKEY")
+pattern <- "[a-z]{4,5}"
+str_detect(animals, pattern)
+
+pattern <- "^[4-7]'\\d{1,2}\"$"
+problems <-[c(2, 10 , 12, 15)] %>% str_view(pattern)
+sum(str_detect(problems, pattern))
+
+str_subset(problems, "inches")
+
+animals <- c("moose", "monkey", "meerkat", "mountain lion")
+pattern <- "moo*"
+str_detect(animals, pattern)
