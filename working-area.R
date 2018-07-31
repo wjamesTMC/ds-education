@@ -4,8 +4,9 @@ library(readr)
 library(readxl)
 install.packages("htmlwidgets")
 
-setwd("C:/Users/jamesw/Documents/ds-projects-edu")
+setwd("C:/Users/jamesw/Documents/ds-education")
 
-# A test to see about sync'ing changes to the home laptop
+# String exercises
+# See also string cheatsheets
 
-getwd()
+
