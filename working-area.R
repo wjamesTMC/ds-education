@@ -8,5 +8,6 @@ setwd("C:/Users/jamesw/Documents/ds-education")
 
 # String exercises
 # See also string cheatsheets
+# Ok another change
 
 
