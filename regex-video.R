@@ -76,3 +76,5 @@ str_subset(problems, "inches")
 animals <- c("moose", "monkey", "meerkat", "mountain lion")
 pattern <- "moo*"
 str_detect(animals, pattern)
+
+# This is one more change to test github
