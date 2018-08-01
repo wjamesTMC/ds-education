@@ -74,3 +74,4 @@ problems %>% str_replace("feet|ft|foot", "'") %>%
   str_detect(pattern) %>% sum
 
 # Why not use str_replace_all? It could have unintentional consequences
+
