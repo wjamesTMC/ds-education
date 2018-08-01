@@ -33,9 +33,11 @@ converted <- problems %>%
   str_replace("feet|foot|ft", "'") %>%
   str_replace("inches|in|''|\"", "") %>%
   str_replace("^([4-7])\\s*[,\\.\\s+]\\s*(\\d*)$", "\\1'\\2")
+converted
 
-pattern <- "^[4-7]\\s*'\\s*\\d{1,2}$"  # Note curley brackets near the end
+pattern <- "^[4-7]\\s*'\\s*\\d{1,2}$"  # Note curly brackets near the end
 index <- str_detect(converted, pattern)
+index
 mean(index)
 
 # [1] 0.615
@@ -47,3 +49,9 @@ mean(index)
 # We also have cm, European punctuation, etc.
 # It may not be worthwhile to fix them
 
+pattern <- "^[4-7]\\s*'\\s*\\d{1,2}$"
+converted_2 <- problems %>% str_replace(converted, pattern)
+converted_2 <- problems %>% "^[4-7]\\s*'\\s*\\d{1,2}$"
+converted_2
+
+converted <- problems %>%
