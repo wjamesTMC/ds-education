@@ -12,6 +12,11 @@ setwd("C:/Users/jamesw/Documents/ds-education")
 schedule <- read_csv("schedule.csv")
 schedule
 
+str_split(schedule$staff, ",|and")
+str_split(schedule$staff, ", | and ")
+str_split(staff$Staff, ",\\s|\\sand\\s")
+str_split(staff$Staff, "\\s?(,|and)\\s?")
+
 # This code turns the csv into a tidy table:
 
 tidy <- schedule %>% 
