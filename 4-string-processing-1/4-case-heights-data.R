@@ -34,7 +34,7 @@ head(x)
 # we do end up with many NAs.
 # You can see how many using this code.
 
-sum(is.na(x))
+sum(is.na(as.numeric(x)))
 
 # We can see some of the entries that are not successfully
 # converted by using the filter function to keep only the entries that
@@ -58,6 +58,7 @@ reported_heights %>%
 # For example, if you write 5'4" like this, this is 5 times 12 plus 4,
 # which is 64 inches.
 # So we could fix all the problematic entries by hand.
+#
 # However, humans are prone to making mistakes.
 # Also, because we plan on continuing to collect data going forward,
 # it'll be convenient to write code that automatically does this.
@@ -78,8 +79,22 @@ reported_heights %>%
 # We also use suppressWarnings throughout the code
 # to avoid the warning messages we know the as.numeric will give us.
 # So here is what the function looks like.
+
+not_inches <- function(x, smallest = 50, tallest = 84) {
+  inches <- suppressWarnings(as.numeric(x))
+  ind <- is.na(inches) | inches < smallest | inches > tallest
+  ind
+}
+
 # We apply this function, and find that there are these many entries that
 # are problematic.
+
+problem <- reported_heights %>%
+  filter(not_inches(height)) %>%
+  .$height
+
+length(problems)
+
 # We can now view all the cases by simply printing them.
 # We don't do that here because there are so many of them.
 # But after surveying them carefully, we notice
@@ -87,13 +102,13 @@ reported_heights %>%
 # A pattern of the form x feet y or x feet space y inches or x feet
 # y backslash inches, and with x and y representing feet and inches
 # respectively, is a common pattern.
-# Here are 10 examples.
+
 # A pattern of the form x dot y or x comma y, with x feet and y inches,
 # are also common.
-# Here are 10 examples.
+
 # Entries that were reported in centimeters rather than inches
 # is another example.
-# Here are 10 of them.
+
 # Once seen that these large groups follow specific patterns,
 # we can develop a plan of attack.
 # Keep in mind that there is rarely just one way to perform these tasks.
