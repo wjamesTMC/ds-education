@@ -34,6 +34,7 @@ library(rvest)
 # five feet and 10 inches, like this?
 # In this case, neither the single or a double quote will work.
 
+# *** USE OF ESCAPE CHARACTERS ***
 # We have to escape the character like this:
 s <- '5\'10"'
 cat(s)
