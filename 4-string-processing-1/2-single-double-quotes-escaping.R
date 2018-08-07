@@ -39,6 +39,8 @@ library(rvest)
 s <- '5\'10"'
 cat(s)
 
+# Escaping characters is something we often have to do in strings.
+
 cat(" LeBron James is 6'8\" ")
 
 # The following all generate errors because they are misformed
