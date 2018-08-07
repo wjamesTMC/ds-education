@@ -62,10 +62,40 @@ str_detect(s, "[4-7]")
 # strings of one digit:
 
 pattern <- "^\\d$"
-yes <- c("1", "5", "9")
-no <- c("12", "123", " 1", "a4", "b")
-s < c(yes, no)
+s <- c("1", "52", "977", "6")
 str_view(s, pattern)
-  
 
-# 
+pattern <- "^\\d$"
+s <- c("12", "123",  " 1", "a4", "b")
+str_view(s, pattern)
+
+# For the inches part, we can have one or two digits.
+# This can be specified in regex with quantifiers.
+# This is done by following the pattern by curly brackets
+# with the possible number of times the previous entry repeats.
+# So the pattern for one or two digits is like this-- backslash, backslash,
+# d, and then curly brackets, 1 comma 2.
+# So this code will do what we want.
+
+pattern <- "^\\d{1,2}$"
+yes <- c("1", "5", "9", "6")
+no <- c("12", "123",  " 1", "a4", "b")
+str_view(c(yes, no), pattern)
+
+# So now, to look for one feet and inches pattern, we can add the symbol for feet
+# and the symbol for inches after the digits.
+# With what we have learned, we can now construct
+# an example for the pattern x feet and y inches,
+# with the x representing feet and the y inches.
+# It's going to look like this.
+
+pattern <- "^[4-7]'\\d{1,2}\"$"
+
+# Let's test it out.
+# Let's make some strings where it is feets and inches, others
+# where we shouldn't get a match.
+
+yes <- c("5'7\"", "5'2\"", "6'3\"", "6'12\"")
+no <- c("1,2\"", "6.2\"",  "I am 1'4\"", "3'2\"")
+str_view(c(yes, no), pattern)
+str_detect(c(yes, no), pattern)
