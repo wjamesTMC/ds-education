@@ -97,5 +97,7 @@ pattern <- "^[4-7]'\\d{1,2}\"$"
 
 yes <- c("5'7\"", "5'2\"", "6'3\"", "6'12\"")
 no <- c("1,2\"", "6.2\"",  "I am 1'4\"", "3'2\"")
+
+# Now note the difference between str_view() and str_detect()
 str_view(c(yes, no), pattern)
 str_detect(c(yes, no), pattern)
