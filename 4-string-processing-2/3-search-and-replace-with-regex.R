@@ -8,6 +8,10 @@ data("reported_heights")
 setwd("C:/Users/jamesw/Documents/ds-education")
 
 #  In a previous video, we defined the object problems
+
+problems <- reported_heights %>% filter(not_inches(height)) %>% .$height
+length(problems)
+
 #  containing the strings that do not appear to be in inches.
 #  We can see that only these many of them match the pattern we define.
 #  To see why this is, we show examples that expose why we don't have more
