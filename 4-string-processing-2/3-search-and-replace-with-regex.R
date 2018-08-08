@@ -9,7 +9,15 @@ setwd("C:/Users/jamesw/Documents/ds-education")
 
 #  In a previous video, we defined the object problems
 
-problems <- reported_heights %>% filter(not_inches(height)) %>% .$height
+not_inches_or_cm <- function(x, smallest = 50, tallest = 84) {
+  inches <- suppressWarnings(as.numeric(x))
+  ind <- !is.na(inches) & 
+    ((inches >= smallest & inches <= tallest) |
+       (inches/2.54 >= smallest & inches/2.54 <= tallest))
+  !ind
+}
+
+problems <- reported_heights %>% filter(not_inches_or_cm(height)) %>% .$height
 length(problems)
 
 #  containing the strings that do not appear to be in inches.
