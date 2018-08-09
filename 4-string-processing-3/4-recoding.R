@@ -16,7 +16,7 @@ install.packages("pdftools")
 # you might want to change United States of America to USA and United Kingdom
 # to UK, and so on.
 
-# We can do this using case when.
+# We can do this using case_when().
 # But the tidyverse offers options that are specifically designed
 # for this task, the recode function.
 # Here's an example showing how to rename countries with long names.
@@ -53,6 +53,7 @@ gapminder %>%
 # Notice the recode function is changing all these names to a shorter 
 # version, and it's going to do it throughout the entire data set,
 # as opposed to one by one.
+#
 # Once we do this, then we get a better-looking plot.
 # Note that there's other similar functions in the tidyverse.
 # For example, 
@@ -62,44 +63,3 @@ gapminder %>%
 # 
 # These are in the forcats function in the tidyverse package.
 
-# Exercises for recoding:
-# 
-# Using the gapminder data, you want to recode countries longer 
-# than 12 letters in the region “Middle Africa” to their abbreviations 
-# in a new column, “country_short”. Which code would accomplish this?
-
-# Not correct
-dat <- gapminder %>% filter(region == "Middle Africa") %>% 
-  mutate(recode(country, 
-                "Central African Republic" = "CAR", 
-                "Congo, Dem. Rep." = "DRC",
-                "Equatorial Guinea" = "Eq. Guinea"))
-head(dat)
-ggplot(dat, aes(year, life_expectancy, color = country)) + geom_line()
-
-# Not correct
-dat <- gapminder %>% filter(region == "Middle Africa") %>% 
-  mutate(country_short = recode(country, 
-                                c("Central African Republic", "Congo, Dem. Rep.", "Equatorial Guinea"),
-                                c("CAR", "DRC", "Eq. Guinea")))
-head(dat)
-ggplot(dat, aes(year, life_expectancy, color = country)) + geom_line()
-
-# Not correct
-dat <- gapminder %>% filter(region == "Middle Africa") %>% 
-  mutate(country = recode(country, 
-                          "Central African Republic" = "CAR", 
-                          "Congo, Dem. Rep." = "DRC",
-                          "Equatorial Guinea" = "Eq. Guinea"))
-head(dat)
-ggplot(dat, aes(year, life_expectancy, color = country)) + geom_line()
-
-# This one is correct: properly recodes each country in a new column 
-# “country_short”.
-dat <- gapminder %>% filter(region == "Middle Africa") %>% 
-  mutate(country_short = recode(country, 
-                                "Central African Republic" = "CAR", 
-                                "Congo, Dem. Rep." = "DRC",
-                                "Equatorial Guinea" = "Eq. Guinea"))
-head(dat)
-ggplot(dat, aes(year, life_expectancy, color = country)) + geom_line()
