@@ -7,12 +7,10 @@ library(lubridate)
 
 install.packages("htmlwidgets")
 
-setwd("C:/Users/jamesw/Documents/ds-projects-edu")
-
 # DATES SECTION
 
-# R established specific data types for dates and times. They may look like
-# strings, but they are not. For example:
+# R established specific data types for dates and times. They 
+# may look like # strings, but they are not. For example:
 
 data("polls_us_election_2016")
 polls_us_election_2016$startdate %>% head
@@ -21,10 +19,14 @@ class(polls_us_election_2016)
 # [1] "2016-11-03" "2016-11-01" "2016-11-02" "2016-11-04" "2016-11-03" "2016-11-03"
 # [1] "Date"
 
-# Plotting functions such as those into GPlot are aware days.
+# Plotting functions such as those into GPlot are aware of days.
 # This means that, for example, a scatterplot
 # can use a numeric representation to decide on the position of the point,
 # but include the string and the labels.
+
+polls_us_election_2016 %>% filter(pollster == "Ipsos" & state == "U.S.") %>%
+  ggplot(aes(startdate, rawpoll_trump)) +
+  geom_line()
 
 # Dates are so common that R has a library(lubridate). Here is a random sampling
 # of dates and what you can do with them
