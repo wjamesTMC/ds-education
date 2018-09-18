@@ -1,5 +1,6 @@
 library(dslabs)
 library(tidyverse)
+library(dplyr)
 
 data("reported_heights")
 
